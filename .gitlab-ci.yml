@@ -1,0 +1,38 @@
+
+before_script:
+- bash ci/docker_install.sh > /dev/null
+# Install & enable Xdebug for code coverage reports
+- pecl install xdebug
+- docker-php-ext-enable xdebug
+# Install composer dependencies
+- wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
+- php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+- php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+- php composer-setup.php
+- php -r "unlink('composer-setup.php'); unlink('installer.sig');"
+- php composer.phar install
+
+
+cache:
+  paths:
+  - vendor/
+
+stages:
+  - test
+  - syntax
+
+phpcs:
+  image: php:7.2
+  stage: syntax
+  script:
+    - ./vendor/bin/phpcs --extensions=php
+
+test:7.1:
+  image: php:7.1
+  script:
+  - phpunit --coverage-text --colors=never
+
+test:7.2:
+  image: php:7.2
+  script:
+  - phpunit --coverage-text --colors=never

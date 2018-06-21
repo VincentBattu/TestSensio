@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<ruleset name="JWTBundle">
+    <description>Mes règles de formattage</description>
+    <arg name="colors"/>
+    <arg value="p"/>
+
+    <file>./</file>
+
+    <exclude-pattern>vendor</exclude-pattern>
+    <exclude-pattern>log</exclude-pattern>
+
+    <rule ref="PSR2" />
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+</ruleset>

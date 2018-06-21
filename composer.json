@@ -1,0 +1,37 @@
+{
+  "name": "drilliak/jwt-bundle",
+  "authors": [
+    {
+      "name": "Vincent BATTU",
+      "email": "vinc.battu@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "symfony/http-foundation": "^4.1",
+    "symfony/http-kernel": "^4.1",
+    "symfony/dependency-injection": "^4.1",
+    "symfony/console": "^4.1",
+    "symfony/config": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Drilliak\\JWTBundle\\": ""
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.2",
+    "squizlabs/php_codesniffer": "*"
+  },
+  "scripts": {
+    "test": [
+      "vendor\\bin\\phpunit --colors --coverage-text"
+    ],
+    "phpcs": [
+      "vendor\\bin\\phpcs.bat"
+    ],
+    "phpcbf": [
+      "vendor\\bin\\phpcbf.bat"
+    ]
+  }
+}
